@@ -18,7 +18,21 @@ public class Client : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        good = true;
+        if (collision.CompareTag("MovableByConveyor"))
+        {
+            good = true;
+        }
+            if (collision.CompareTag("Body"))
+        {
+            good = false;
+        }
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Body"))
+        {
+            good = false;
+        }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
