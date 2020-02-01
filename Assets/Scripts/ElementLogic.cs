@@ -24,7 +24,9 @@ public class ElementLogic : MonoBehaviour
     {
         if (onPoint)
         {
-            transform.position = slot.transform.position;
+            //transform.position = slot.transform.position;
+            transform.position = Vector3.zero;
+
         }
 
         if (isBeingHeld)
@@ -71,19 +73,22 @@ public class ElementLogic : MonoBehaviour
             }
         }
         slot = collisions[minIndex];
+
+
         if (slot.gameObject.GetComponent<Slot>().connected)
         {
             return;
         }
         else
         {
+            transform.SetParent(slot.transform);
+            transform.position = Vector3.zero;
             onPoint = true;
             slot.gameObject.GetComponent<Slot>().connected = true;
             slot.gameObject.GetComponent<SpriteRenderer>().enabled = false;
             slot.gameObject.GetComponent<Collider2D>().enabled = false;
             GetComponent<Collider2D>().isTrigger = true;
-            transform.rotation = slot.transform.rotation;
-            transform.localScale = slot.transform.localScale * 5;
+            //transform.localScale = slot.transform.localScale * 5;
         }
 
         if (slot.gameObject.GetComponent<Slot>().bodyName.ToLower() == bodyName.ToLower())
