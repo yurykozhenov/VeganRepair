@@ -20,7 +20,10 @@ public class LevelManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        scoreText.text = score.ToString();
+        if(scoreText != null)
+        {
+            scoreText.text = score.ToString();
+        }
     }
 
     public void Play()
