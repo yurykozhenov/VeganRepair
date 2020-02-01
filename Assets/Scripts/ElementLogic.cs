@@ -80,6 +80,18 @@ public class ElementLogic : MonoBehaviour
             slot.gameObject.GetComponent<Collider2D>().enabled = false;
             GetComponent<Collider2D>().isTrigger = true;
             rb.bodyType = RigidbodyType2D.Kinematic;
+            if(transform.childCount < 1 || slot.transform.parent.CompareTag("Body"))
+            {
+                return;
+            }
+            else
+            {
+                for (int i = 0; i < transform.childCount; i++)
+                {
+                    transform.GetChild(i).gameObject.SetActive(true);
+                }
+            }
+           
             //transform.localScale = slot.transform.localScale * 5;
         }
 
