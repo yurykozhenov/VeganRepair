@@ -100,6 +100,13 @@ MonoBehaviour:
   needSwipes: 3
   wrappedShaverma: {fileID: 726789850686205397, guid: 626ecf6b51687a244b51e26bde9d3196,
     type: 3}
+  sprites:
+  - {fileID: 5894284300760501352, guid: bcda72de04609f6498e6339e0942b20f, type: 3}
+  - {fileID: 730567839271143200, guid: bcda72de04609f6498e6339e0942b20f, type: 3}
+  - {fileID: -7942901070593070221, guid: bcda72de04609f6498e6339e0942b20f, type: 3}
+  - {fileID: 17547620965904474, guid: bcda72de04609f6498e6339e0942b20f, type: 3}
+  - {fileID: 2223044117521825173, guid: bcda72de04609f6498e6339e0942b20f, type: 3}
+  - {fileID: 2942389071723332262, guid: bcda72de04609f6498e6339e0942b20f, type: 3}
 --- !u!61 &4555698995476674104
 BoxCollider2D:
   m_ObjectHideFlags: 0

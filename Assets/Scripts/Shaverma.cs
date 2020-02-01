@@ -7,11 +7,13 @@ public class Shaverma : MonoBehaviour
     private int swipes;
     public int needSwipes = 3;
     public GameObject wrappedShaverma;
+    public Sprite[] sprites;
     private bool spawned;
     // Start is called before the first frame update
     void Start()
     {
-        
+        var spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.sprite = sprites[Random.Range(0, sprites.Length - 1)];
     }
 
     // Update is called once per frame
