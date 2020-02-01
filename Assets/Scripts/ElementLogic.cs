@@ -7,10 +7,11 @@ public class ElementLogic : MonoBehaviour
     private float startPosX;
     private float startPosY;
     private bool isBeingHeld = false;
+    public string bodyName;
 
     public bool onPoint = false;
     private Vector2 point;
-    private GameObject body;
+    private GameObject slot;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +23,7 @@ public class ElementLogic : MonoBehaviour
     {
         if (onPoint)
         {
-            transform.SetParent(body.transform);
+            transform.position = slot.transform.position;
         }
 
         if (isBeingHeld)
@@ -40,8 +41,8 @@ public class ElementLogic : MonoBehaviour
             transform.SetParent(null);
             Vector3 mousePos;
             mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            startPosX = mousePos.x - transform.localPosition.x; //- transform.parent.transform.position.x;
-            startPosY = mousePos.y - transform.localPosition.y;  //- transform.parent.transform.position.y;
+            startPosX = mousePos.x - transform.localPosition.x; 
+            startPosY = mousePos.y - transform.localPosition.y;
 
             isBeingHeld = true;
         }
@@ -56,7 +57,31 @@ public class ElementLogic : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D collision)
     {
+        if(!isBeingHeld && collision.gameObject.CompareTag("Slot"))
+        {
+            if (collision.gameObject.GetComponent<Slot>().connected)
+            {
+                return;
+            }
+            else
+            {
+                onPoint = true;
+                collision.gameObject.GetComponent<Slot>().connected = true;
+                transform.position = collision.transform.position;
+                slot = collision.gameObject;
+                collision.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            }
 
+            if (collision.gameObject.GetComponent<Slot>().bodyName.ToLower() == bodyName.ToLower())
+            {
+                Debug.Log("You Rock");
+
+            }
+            else
+            {
+                Debug.Log("You LOX");
+            }
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

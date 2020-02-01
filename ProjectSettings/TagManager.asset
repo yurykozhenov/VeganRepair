@@ -8,6 +8,7 @@ TagManager:
   - BodyPoint
   - End
   - Body
+  - Slot
   layers:
   - Default
   - TransparentFX

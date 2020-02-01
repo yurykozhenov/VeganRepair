@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Shaverma : MonoBehaviour
 {
-    private bool moving = false;
     private int swipes;
     public int needSwipes = 3;
     public GameObject wrappedShaverma;

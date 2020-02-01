@@ -126,6 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1086cbb82184e35429b45a3a870fccaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bodyName: leg
   onPoint: 0
 --- !u!50 &-7404517386494220130
 Rigidbody2D:
