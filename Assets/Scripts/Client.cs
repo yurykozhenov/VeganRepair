@@ -20,15 +20,11 @@ public class Client : MonoBehaviour
     {
         if (collision.CompareTag("Body"))
         {
-
+            Debug.Log("Khe Khe");
         }
+
         if (collision.CompareTag("MovableByConveyor"))
         {
-
-
-
-
-
             Destroy(collision.gameObject);
         }
     }
