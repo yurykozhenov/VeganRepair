@@ -93,6 +93,18 @@ public class ElementLogic : MonoBehaviour
             }
            
             //transform.localScale = slot.transform.localScale * 5;
+            //fix parent...
+            if(transform.childCount < 1 || slot.transform.parent.CompareTag("Body"))
+            {
+                return;
+            }
+            else
+            {
+                for(int i = 0; i < transform.childCount; i++)
+                {
+                    transform.GetChild(i).gameObject.SetActive(true);
+                }
+            }
         }
 
         if (slot.gameObject.GetComponent<Slot>().bodyName.ToLower() == bodyName.ToLower())
