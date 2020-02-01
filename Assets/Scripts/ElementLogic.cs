@@ -10,50 +10,34 @@ public class ElementLogic : MonoBehaviour
     public string bodyName;
 
     public bool onPoint = false;
-    private Vector2 point;
     private GameObject slot;
     private List<GameObject> collisions = new List<GameObject>();
-    // Start is called before the first frame update
-    void Start()
-    {
-        point = Vector2.zero;
-    }
 
-    // Update is called once per frame
     void Update()
     {
-        if (onPoint)
-        {
-            transform.position = slot.transform.position;
-        }
-
-        if (isBeingHeld)
-        {
-            Vector3 mousePos;
-            mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            transform.localPosition = new Vector2(mousePos.x - startPosX, mousePos.y - startPosY);
-        }
+        if (!isBeingHeld) return;
+        
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        transform.localPosition = new Vector2(mousePos.x - startPosX, mousePos.y - startPosY);
     }
 
     private void OnMouseDown()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            transform.SetParent(null);
-            Vector3 mousePos;
-            mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            startPosX = mousePos.x - transform.localPosition.x; 
-            startPosY = mousePos.y - transform.localPosition.y;
+        if (onPoint) return;
+        
+        transform.SetParent(null);
+        Vector3 mousePos;
+        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        startPosX = mousePos.x - transform.localPosition.x; 
+        startPosY = mousePos.y - transform.localPosition.y;
 
-            isBeingHeld = true;
-
-        }
-
+        isBeingHeld = true;
     }
 
     private void OnMouseUp()
     {
-        GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+        var rb = GetComponent<Rigidbody2D>();
+        rb.bodyType = RigidbodyType2D.Dynamic;
         isBeingHeld = false;
 
         if (collisions.Count <= 0)
@@ -82,8 +66,9 @@ public class ElementLogic : MonoBehaviour
             slot.gameObject.GetComponent<SpriteRenderer>().enabled = false;
             slot.gameObject.GetComponent<Collider2D>().enabled = false;
             GetComponent<Collider2D>().isTrigger = true;
-            transform.rotation = slot.transform.rotation;
-            transform.localScale = slot.transform.localScale * 5;
+            rb.bodyType = RigidbodyType2D.Kinematic;
+            //transform.rotation = slot.transform.rotation;
+            //transform.localScale = slot.transform.localScale * 5;
         }
 
         if (slot.gameObject.GetComponent<Slot>().bodyName.ToLower() == bodyName.ToLower())
@@ -106,9 +91,9 @@ public class ElementLogic : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("Block"))
+        if (collision.gameObject.CompareTag("Slot"))
         {
-            collisions.Clear();
+            collisions.Remove(collision.gameObject);
         }
     }
 }
