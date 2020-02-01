@@ -35,7 +35,7 @@ public class SpawnElements : MonoBehaviour
             {
                 GameObject item = Instantiate(templates.items[rand], points[i].position, templates.items[rand].transform.rotation);
                 item.transform.SetParent(this.transform);
-                item.transform.localScale = new Vector2(.75f, .75f);
+                item.transform.localScale = new Vector2(1.1f, 1.1f); ;
             }
             Destroy(points[i].gameObject);
 
