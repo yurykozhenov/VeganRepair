@@ -128,7 +128,10 @@ public class ElementLogic : MonoBehaviour
         }
         else
         {
-            Debug.Log("You LOX");
+            if(LevelManager.instance.score > 0)
+            {
+                LevelManager.instance.score -= 1;
+            }
         }
     }
 
