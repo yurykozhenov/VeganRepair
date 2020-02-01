@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Client : MonoBehaviour
 {
+    private bool good;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,16 +16,27 @@ public class Client : MonoBehaviour
     {
         
     }
-
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        good = true;
+    }
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Body"))
         {
-            Debug.Log("Khe Khe");
+            good = false;
         }
 
         if (collision.CompareTag("MovableByConveyor"))
         {
+            if (good)
+            {
+                Debug.Log("Good shavyha!");
+            }
+            else
+            {
+                Debug.Log("Khe Khe");
+            }
             Destroy(collision.gameObject);
         }
     }
