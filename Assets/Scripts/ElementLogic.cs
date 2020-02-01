@@ -10,11 +10,16 @@ public class ElementLogic : MonoBehaviour
     public string bodyName;
 
     public bool onPoint = false;
+    private bool spawned = false;
     private GameObject slot;
     private List<GameObject> collisions = new List<GameObject>();
 
     void Update()
     {
+        if (onPoint)
+        {
+            transform.position = slot.transform.position;
+        }
 
         if (!isBeingHeld) return;
         
@@ -25,14 +30,18 @@ public class ElementLogic : MonoBehaviour
     private void OnMouseDown()
     {
         if (onPoint) return;
-        
-        transform.SetParent(null);
-        Vector3 mousePos;
-        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        startPosX = mousePos.x - transform.localPosition.x; 
-        startPosY = mousePos.y - transform.localPosition.y;
 
-        isBeingHeld = true;
+        if (!spawned)
+        {
+            transform.SetParent(null);
+            Vector3 mousePos;
+            mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            startPosX = mousePos.x - transform.localPosition.x;
+            startPosY = mousePos.y - transform.localPosition.y;
+
+            isBeingHeld = true;
+        }
+       
     }
 
     private void OnMouseUp()
@@ -40,6 +49,7 @@ public class ElementLogic : MonoBehaviour
         var rb = GetComponent<Rigidbody2D>();
         rb.bodyType = RigidbodyType2D.Dynamic;
         isBeingHeld = false;
+        spawned = true;
 
         if (collisions.Count <= 0)
         {
@@ -64,8 +74,6 @@ public class ElementLogic : MonoBehaviour
         }
         else
         {
-            transform.SetParent(slot.transform);
-            transform.position = Vector3.zero;
             onPoint = true;
             slot.gameObject.GetComponent<Slot>().connected = true;
             slot.gameObject.GetComponent<SpriteRenderer>().enabled = false;

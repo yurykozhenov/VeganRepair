@@ -15,6 +15,6 @@ public class LevelManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        body.transform.Rotate(Time.deltaTime * rotatingSpeed * Vector3.forward);
+        //body.transform.Rotate(Time.deltaTime * rotatingSpeed * Vector3.forward);
     }
 }
