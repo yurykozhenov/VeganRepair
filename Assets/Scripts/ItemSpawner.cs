@@ -5,14 +5,14 @@ using UnityEngine;
 public class ItemSpawner : MonoBehaviour
 {
     public GameObject[] items;
-    [Range(0, 8)] public int timeToSpawn;
-    [Range(0, 8)] public int timeBeforeSpawn;
+    [Range(0, 8)] public float timeToSpawn;
+    [Range(0, 20)] public float timeBetweenSpawning;
     public Transform spawnPoint;
 
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("Spawn", timeToSpawn, timeBeforeSpawn);
+        InvokeRepeating("Spawn", timeToSpawn, timeBetweenSpawning);
     }
 
     // Update is called once per frame
