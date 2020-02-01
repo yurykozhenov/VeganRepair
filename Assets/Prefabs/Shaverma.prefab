@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7957325742773100245}
   m_Layer: 0
   m_Name: Shaverma
-  m_TagString: Untagged
+  m_TagString: MovableByConveyor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -153,16 +153,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3879815619103516040}
     m_Modifications:
-    - target: {fileID: 726789850686205397, guid: 626ecf6b51687a244b51e26bde9d3196,
-        type: 3}
-      propertyPath: m_Name
-      value: DOO
-      objectReference: {fileID: 0}
-    - target: {fileID: 726789850686205397, guid: 626ecf6b51687a244b51e26bde9d3196,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 726789850686205395, guid: 626ecf6b51687a244b51e26bde9d3196,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -227,6 +217,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.x
       value: 2.229672
+      objectReference: {fileID: 0}
+    - target: {fileID: 726789850686205397, guid: 626ecf6b51687a244b51e26bde9d3196,
+        type: 3}
+      propertyPath: m_Name
+      value: DOO
+      objectReference: {fileID: 0}
+    - target: {fileID: 726789850686205397, guid: 626ecf6b51687a244b51e26bde9d3196,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 626ecf6b51687a244b51e26bde9d3196, type: 3}

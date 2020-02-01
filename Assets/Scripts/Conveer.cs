@@ -16,13 +16,15 @@ public class Conveer : MonoBehaviour
     {
         
     }
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-        collision.gameObject.transform.Translate(Vector3.right * Time.deltaTime * speed);
-    }
+    // private void OnCollisionStay2D(Collision2D collision)
+    // {
+    //     collision.gameObject.transform.Translate(Vector3.right * Time.deltaTime * speed);
+    // }
     private void OnTriggerStay2D(Collider2D collision)
     {
-        collision.gameObject.transform.Translate(Vector3.right * Time.deltaTime * speed);
-
+        if (collision.CompareTag("MovableByConveyor"))
+        {
+            collision.gameObject.transform.Translate(Vector3.right * (Time.deltaTime * speed));
+        }
     }
 }

@@ -10,6 +10,7 @@ TagManager:
   - Body
   - Slot
   - Block
+  - MovableByConveyor
   layers:
   - Default
   - TransparentFX
