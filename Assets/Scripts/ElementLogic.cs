@@ -91,7 +91,7 @@ public class ElementLogic : MonoBehaviour
                     transform.GetChild(i).gameObject.SetActive(true);
                 }
             }
-           
+            transform.rotation = slot.transform.rotation;
             //transform.localScale = slot.transform.localScale * 5;
             //fix parent...
             if(transform.childCount < 1 || slot.transform.parent.CompareTag("Body"))

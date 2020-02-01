@@ -11,6 +11,7 @@ TagManager:
   - Slot
   - Block
   - MovableByConveyor
+  - Spawner
   layers:
   - Default
   - TransparentFX
