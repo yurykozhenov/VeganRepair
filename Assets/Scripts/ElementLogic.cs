@@ -12,6 +12,7 @@ public class ElementLogic : MonoBehaviour
     public bool onPoint = false;
     private Vector2 point;
     private GameObject slot;
+    private List<GameObject> collisions = new List<GameObject>();
     // Start is called before the first frame update
     void Start()
     {
@@ -45,6 +46,7 @@ public class ElementLogic : MonoBehaviour
             startPosY = mousePos.y - transform.localPosition.y;
 
             isBeingHeld = true;
+
         }
 
     }
@@ -53,79 +55,60 @@ public class ElementLogic : MonoBehaviour
     {
         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
         isBeingHeld = false;
-    }
 
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-        if(!isBeingHeld && collision.gameObject.CompareTag("Slot"))
+        if (collisions.Count <= 0)
         {
-            if (collision.gameObject.GetComponent<Slot>().connected)
-            {
-                return;
-            }
-            else
-            {
-                onPoint = true;
-                collision.gameObject.GetComponent<Slot>().connected = true;
-                transform.position = collision.transform.position;
-                slot = collision.gameObject;
-                collision.gameObject.GetComponent<SpriteRenderer>().enabled = false;
-            }
+            return;
+        }
 
-            if (collision.gameObject.GetComponent<Slot>().bodyName.ToLower() == bodyName.ToLower())
+        var minDistance = Vector2.Distance(transform.position, collisions[0].transform.position);
+        var minIndex = 0;
+        for (int i = 1; i < collisions.Count; i++)
+        {
+            if (Vector2.Distance(transform.position, collisions[i].transform.position) < minDistance)
             {
-                Debug.Log("You Rock");
+                minIndex = i;
+            }
+        }
+        slot = collisions[minIndex];
+        if (slot.gameObject.GetComponent<Slot>().connected)
+        {
+            return;
+        }
+        else
+        {
+            onPoint = true;
+            slot.gameObject.GetComponent<Slot>().connected = true;
+            slot.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            slot.gameObject.GetComponent<Collider2D>().enabled = false;
+            GetComponent<Collider2D>().isTrigger = true;
+            transform.rotation = slot.transform.rotation;
+            transform.localScale = slot.transform.localScale * 5;
+        }
 
-            }
-            else
-            {
-                Debug.Log("You LOX");
-            }
+        if (slot.gameObject.GetComponent<Slot>().bodyName.ToLower() == bodyName.ToLower())
+        {
+            Debug.Log("You Rock");
+        }
+        else
+        {
+            Debug.Log("You LOX");
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
-        //else if(collision.tag == "BodyPoint")
-        //{
-        //    if (onPoint || collision.GetComponent<BodyPoint>().isTriggered)
-        //    {
-        //        return;
-        //    }
-        //    onPoint = true;
-        //    point = collision.transform;
-        //    collision.GetComponent<BodyPoint>().Triggered();
-        //    moving = false;
-        //}
-        //else if (collision.tag == "Body")
-        //{
-        //    if (onPoint)
-        //    {
-        //        return;
-        //    }
-        //    onPoint = true;
-        //    point = collision.transform;
-        //    moving = false;
-        //}
+        if (collision.gameObject.CompareTag("Slot"))
+        {
+            collisions.Add(collision.gameObject);
+        }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        //if (collision.gameObject.tag == "Body" && collision.gameObject.GetComponent<ElementLogic>().onPoint && !collision.gameObject.GetComponent<ElementLogic>())
-        //{
-        //    if (onPoint)
-        //    {
-        //        return;
-        //    }
-        //    onPoint = true;
-        //    moving = false;
-        //    Vector2 hitPoint = collision.GetContact(0).point;
-        //    point = hitPoint;
-        //    body = collision.gameObject;
-        //    Debug.Log(point);
-        //    transform.position = hitPoint;
-        //    GetComponent<Rigidbody2D>().gravityScale = 0f;
-        //    GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
-        //}
+        if (collision.CompareTag("Block"))
+        {
+            collisions.Clear();
+        }
     }
 }

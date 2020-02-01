@@ -9,6 +9,7 @@ TagManager:
   - End
   - Body
   - Slot
+  - Block
   layers:
   - Default
   - TransparentFX
