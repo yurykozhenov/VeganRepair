@@ -109,7 +109,7 @@ public class ElementLogic : MonoBehaviour
 
         if (slot.gameObject.GetComponent<Slot>().bodyName.ToLower() == bodyName.ToLower())
         {
-            Debug.Log("You Rock");
+            LevelManager.instance.score += 1;
         }
         else
         {

@@ -12,6 +12,7 @@ TagManager:
   - Block
   - MovableByConveyor
   - Spawner
+  - Client
   layers:
   - Default
   - TransparentFX
