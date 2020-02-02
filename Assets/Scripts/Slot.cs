@@ -19,7 +19,7 @@ public class Slot : MonoBehaviour
     {
         if (connected && moving)
         {
-            transform.position = Vector2.MoveTowards(transform.position, body.transform.position, 1f * Time.deltaTime);
+            //transform.position = Vector2.MoveTowards(transform.position, body.transform.position, 1f * Time.deltaTime);
         }
     }
 
