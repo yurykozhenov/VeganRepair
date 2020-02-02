@@ -11,7 +11,6 @@ public class ElementLogic : MonoBehaviour
     public bool onPoint = false;
     private bool spawned = false;
     private GameObject slot;
-    private GameObject mainSlot;
     private List<GameObject> collisions = new List<GameObject>();
 
     void Update()
@@ -20,10 +19,6 @@ public class ElementLogic : MonoBehaviour
         {
             transform.position = Vector2.MoveTowards(transform.position, slot.transform.parent.position, 2f * Time.deltaTime);
             
-            if (true)
-            {
-                transform.position = Vector2.MoveTowards(slot.transform.parent.position, mainSlot.transform.parent.position, 0.001f * Time.deltaTime);
-            }
             
         }
 
@@ -78,7 +73,6 @@ public class ElementLogic : MonoBehaviour
         }
         slot = collisions[minIndex];
 
-
         if (slot.gameObject.GetComponent<Slot>().connected)
         {
             return;
@@ -86,7 +80,6 @@ public class ElementLogic : MonoBehaviour
         else
         {
             onPoint = true;
-            mainSlot = GameObject.Find("Slot");
             slot.gameObject.GetComponent<Slot>().connected = true;
             slot.gameObject.GetComponent<SpriteRenderer>().enabled = false;
             slot.gameObject.GetComponent<Collider2D>().enabled = false;
