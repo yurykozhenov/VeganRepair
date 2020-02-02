@@ -51,7 +51,10 @@ public class Client : MonoBehaviour
             else
             {
                 Debug.Log("Khe Khe");
-                LevelManager.instance.score -= 2;
+                if(LevelManager.instance.score > 0)
+                {
+                    LevelManager.instance.score -= 2;
+                }
             }
             Destroy(collision.gameObject);
         }
