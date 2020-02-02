@@ -8,18 +8,25 @@ public class ElementLogic : MonoBehaviour
     private float startPosY;
     private bool isBeingHeld = false;
     public string bodyName;
-
     public bool onPoint = false;
     private bool spawned = false;
     private GameObject slot;
+    private GameObject mainSlot;
     private List<GameObject> collisions = new List<GameObject>();
 
     void Update()
     {
         if (onPoint)
         {
-            transform.position = slot.transform.position;
+            transform.position = Vector2.MoveTowards(transform.position, slot.transform.parent.position, 2f * Time.deltaTime);
+            
+            if (true)
+            {
+                transform.position = Vector2.MoveTowards(slot.transform.parent.position, mainSlot.transform.parent.position, 0.001f * Time.deltaTime);
+            }
+            
         }
+
 
         if (!isBeingHeld) return;
         
@@ -46,6 +53,10 @@ public class ElementLogic : MonoBehaviour
 
     private void OnMouseUp()
     {
+        if (onPoint)
+        {
+            return;
+        }
         var rb = GetComponent<Rigidbody2D>();
         rb.bodyType = RigidbodyType2D.Dynamic;
         isBeingHeld = false;
@@ -75,6 +86,7 @@ public class ElementLogic : MonoBehaviour
         else
         {
             onPoint = true;
+            mainSlot = GameObject.Find("Slot");
             slot.gameObject.GetComponent<Slot>().connected = true;
             slot.gameObject.GetComponent<SpriteRenderer>().enabled = false;
             slot.gameObject.GetComponent<Collider2D>().enabled = false;
@@ -150,4 +162,23 @@ public class ElementLogic : MonoBehaviour
             collisions.Remove(collision.gameObject);
         }
     }
+   // private void OnCollisionEnter2D(Collision2D collision)
+   // {
+   //     if (collision.gameObject.tag == "Body" && collision.gameObject.GetComponent<ElementLogic>().onPoint && !collision.gameObject.GetComponent<ElementLogic>())
+   //     {
+   //         if (onPoint)
+   //         {
+   //             return;
+   //         }
+   //         onPoint = true;
+   //         moving = false;
+   //         Vector2 hitPoint = collision.GetContact(0).point;
+   //         point = hitPoint;
+   //         body = collision.gameObject;
+   //         Debug.Log(point);
+   //         transform.position = hitPoint;
+   //         GetComponent<Rigidbody2D>().gravityScale = 0f;
+   //         GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
+   //     }
+   // }
 }
