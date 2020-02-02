@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 3879815619103516042}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 1}
+  m_LocalScale: {x: 0.4365, y: 0.4365, z: 1.746}
   m_Children:
   - {fileID: 4532127888786706759}
   m_Father: {fileID: 0}
@@ -72,7 +72,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 12
   m_Sprite: {fileID: 5894284300760501352, guid: bcda72de04609f6498e6339e0942b20f,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -117,7 +117,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -161,6 +161,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3879815619103516040}
     m_Modifications:
+    - target: {fileID: 726789850686205397, guid: 626ecf6b51687a244b51e26bde9d3196,
+        type: 3}
+      propertyPath: m_Name
+      value: DOO
+      objectReference: {fileID: 0}
+    - target: {fileID: 726789850686205397, guid: 626ecf6b51687a244b51e26bde9d3196,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 726789850686205395, guid: 626ecf6b51687a244b51e26bde9d3196,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -218,23 +228,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 726789850686205395, guid: 626ecf6b51687a244b51e26bde9d3196,
         type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.1413096
-      objectReference: {fileID: 0}
-    - target: {fileID: 726789850686205395, guid: 626ecf6b51687a244b51e26bde9d3196,
-        type: 3}
       propertyPath: m_LocalScale.x
       value: 2.229672
       objectReference: {fileID: 0}
-    - target: {fileID: 726789850686205397, guid: 626ecf6b51687a244b51e26bde9d3196,
+    - target: {fileID: 726789850686205395, guid: 626ecf6b51687a244b51e26bde9d3196,
         type: 3}
-      propertyPath: m_Name
-      value: DOO
-      objectReference: {fileID: 0}
-    - target: {fileID: 726789850686205397, guid: 626ecf6b51687a244b51e26bde9d3196,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
+      propertyPath: m_LocalScale.y
+      value: 1.1413096
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 626ecf6b51687a244b51e26bde9d3196, type: 3}

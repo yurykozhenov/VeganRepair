@@ -26,6 +26,6 @@ public class ItemSpawner : MonoBehaviour
         if (items.Length <= 0)
             return;
         int rand = Random.Range(0, items.Length);
-        Instantiate(items[rand], spawnPoint.position, items[rand].transform.rotation);
+        Instantiate(items[rand], new Vector3(spawnPoint.position.x, spawnPoint.position.y, 0), items[rand].transform.rotation);
     }
 }

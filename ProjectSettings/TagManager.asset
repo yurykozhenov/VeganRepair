@@ -13,6 +13,8 @@ TagManager:
   - MovableByConveyor
   - Spawner
   - Client
+  - _builderPlace
+  - _bodyPart
   layers:
   - Default
   - TransparentFX

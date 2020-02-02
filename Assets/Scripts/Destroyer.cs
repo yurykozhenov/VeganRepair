@@ -21,6 +21,7 @@ public class Destroyer : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Destroy(collision.gameObject);
+        if(!collision.CompareTag("Conveer"))
+            Destroy(collision.gameObject);
     }
 }

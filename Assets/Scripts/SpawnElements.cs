@@ -22,15 +22,36 @@ public class SpawnElements : MonoBehaviour
 
     void Spawn()
     {
-        int rand = 0;
+        int randAnimal = 0;
+        int randPart = 0;
+        int randVegetable = 0;
+        randAnimal = Random.Range(0, templates.items.Length);
 
         for (int i = 0; i < points.Length; i++) {
-            rand = Random.Range(0, templates.items.Length);
+            randPart = Random.Range(0, templates.items[randAnimal].GetComponent<Animal>().parts.Length + 3);
 
-                GameObject item = Instantiate(templates.items[rand], points[i].position, templates.items[rand].transform.rotation);
+            if(randPart >= templates.other.Length)
+            {
+                randVegetable = Random.Range(0, templates.other.Length);
+                GameObject item = Instantiate(
+                    templates.other[randVegetable],
+                    points[i].position,
+                    templates.other[randVegetable].transform.rotation
+                );
                 item.transform.SetParent(this.transform);
-                item.transform.localScale = new Vector2(1.1f, 1.1f); ;
-            
+
+            }
+            else
+            {
+                GameObject item = Instantiate(
+                    templates.items[randAnimal].GetComponent<Animal>().parts[randPart],
+                    points[i].position,
+                    templates.items[randAnimal].GetComponent<Animal>().parts[randPart].transform.rotation
+                );
+                item.transform.SetParent(this.transform);
+
+            }
+
             Destroy(points[i].gameObject);
 
         }
