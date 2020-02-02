@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 711980964}
   - component: {fileID: 711980965}
   m_Layer: 0
-  m_Name: Body
+  m_Name: OldBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 4093497546472096339}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 6.35, y: -6.2, z: 0}
-  m_LocalScale: {x: 2.152, y: 2.152, z: 2.152}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 4093497546692583604}
   - {fileID: 7194098030554552887}
@@ -125,7 +125,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1
 --- !u!1001 &3040642753513041341
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -46,10 +46,15 @@ public class Client : MonoBehaviour
             if (good)
             {
                 Debug.Log("Good shavyha!");
+                LevelManager.instance.score += 1;
             }
             else
             {
                 Debug.Log("Khe Khe");
+                if(LevelManager.instance.score > 0)
+                {
+                    LevelManager.instance.score -= 2;
+                }
             }
             Destroy(collision.gameObject);
         }

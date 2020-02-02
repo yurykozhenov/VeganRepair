@@ -80,7 +80,19 @@ public class ElementLogic : MonoBehaviour
             slot.gameObject.GetComponent<Collider2D>().enabled = false;
             GetComponent<Collider2D>().isTrigger = true;
             rb.bodyType = RigidbodyType2D.Kinematic;
-            if(transform.childCount < 1 || slot.transform.parent.CompareTag("Body"))
+            if (bodyName == "tail")
+            {
+                transform.rotation = Quaternion.Euler(slot.transform.eulerAngles.x, slot.transform.eulerAngles.y, slot.transform.eulerAngles.z + transform.eulerAngles.z);
+                if (slot.name == "Slot (1)")
+                {
+                    //transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
+                }
+            }
+            else if (bodyName != "head")
+            {
+                transform.rotation = slot.transform.rotation;
+            } 
+            if (transform.childCount < 1 || slot.transform.parent.CompareTag("Body"))
             {
                 return;
             }
@@ -89,9 +101,11 @@ public class ElementLogic : MonoBehaviour
                 for (int i = 0; i < transform.childCount; i++)
                 {
                     transform.GetChild(i).gameObject.SetActive(true);
+                    transform.GetChild(i).transform.rotation = transform.rotation;
+
                 }
             }
-            transform.rotation = slot.transform.rotation;
+            
             //transform.localScale = slot.transform.localScale * 5;
             //fix parent...
             if(transform.childCount < 1 || slot.transform.parent.CompareTag("Body"))
@@ -103,6 +117,7 @@ public class ElementLogic : MonoBehaviour
                 for(int i = 0; i < transform.childCount; i++)
                 {
                     transform.GetChild(i).gameObject.SetActive(true);
+
                 }
             }
         }
@@ -113,7 +128,10 @@ public class ElementLogic : MonoBehaviour
         }
         else
         {
-            Debug.Log("You LOX");
+            if(LevelManager.instance.score > 0)
+            {
+                LevelManager.instance.score -= 1;
+            }
         }
     }
 
